@@ -1,0 +1,29 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.special.none'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+def lombokVersion = '1.18.12'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile('de.javakaffee.msm:memcached-session-manager:1.9.2')
+	compile('de.javakaffee.msm:memcached-session-manager-tc8:1.9.2')
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
